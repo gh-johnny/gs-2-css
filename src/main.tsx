@@ -7,6 +7,7 @@ import Sobre from './routes/Sobre.tsx'
 import Home from './routes/Home.tsx'
 import Login from './routes/Login.tsx'
 import Cadastrar from './routes/Cadastrar.tsx'
+import NotFound from './routes/NotFound.tsx'
 
 import { ErrorBoundary } from 'react-error-boundary'
 
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
         element: <Cadastrar />,
         errorElement: <ErrorBoundary fallback={<Error />} children={<Error />} />,
     },
+    {
+        path: "*",
+        element: <NotFound/>,
+    }
 ], {
     future: {
         v7_fetcherPersist: true,
