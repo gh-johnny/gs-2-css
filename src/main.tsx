@@ -7,6 +7,7 @@ import Sobre from './routes/Sobre.tsx'
 import Home from './routes/Home.tsx'
 import Login from './routes/Login.tsx'
 import Cadastrar from './routes/Cadastrar.tsx'
+import './index.css'
 
 const router = createBrowserRouter([
     {
