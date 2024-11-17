@@ -7,12 +7,17 @@ import Sobre from './routes/Sobre.tsx'
 import Home from './routes/Home.tsx'
 import Login from './routes/Login.tsx'
 import Cadastrar from './routes/Cadastrar.tsx'
+
+import { ErrorBoundary } from 'react-error-boundary'
+
 import './index.css'
+import Error from './routes/Error.tsx'
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        errorElement: <ErrorBoundary fallback={<Error />} children={<Error />} />,
         children: [
             {
                 path: "",
@@ -31,15 +36,25 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+        errorElement: <ErrorBoundary fallback={<Error />} children={<Error />} />,
     },
     {
         path: "/cadastrar",
         element: <Cadastrar />,
+        errorElement: <ErrorBoundary fallback={<Error />} children={<Error />} />,
     },
-])
+], {
+    future: {
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_relativeSplatPath: true,
+        v7_skipActionErrorRevalidation: true,
+    }
+})
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <RouterProvider router={router} />
+        <RouterProvider router={router} future={{ v7_startTransition: true }} />
     </StrictMode>,
 )
