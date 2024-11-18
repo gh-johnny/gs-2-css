@@ -18,27 +18,31 @@ import { getAllUsers } from "@/api/user/get-all"
 import { checkInCollection } from "@/utils/data/checkInCollection"
 import { notifyError } from "@/utils/notify/notify-error"
 import { useNavigate } from "react-router-dom"
+import { useUser } from "@/contexts/user-context"
 
 export default function Cadastrar() {
 
     const navigate = useNavigate()
 
-    const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<TCadastroSchema>({
+    const { setUser: login } = useUser()
+
+    const { register, handleSubmit, formState: { isSubmitting, errors }, reset, getValues } = useForm<TCadastroSchema>({
         resolver: zodResolver(cadastroSchema)
     })
 
     const { mutateAsync: create } = useMutation({
         mutationFn: createUser,
-        onSuccess: () => {
-            // set token in sessionStorage
-            // set user in userContext authContext userInfo whatever
-            // clean / reset()
-            // redirect / navigate("/")
-            console.log("yaaaay, logado")
+        onSuccess: ({ data: { name, email } }: { data: TUser }) => {
+            login({
+                email,
+                name
+            })
+            reset()
+            navigate("/")
         },
-        onError: () => {
+        onError: ({ message }) => {
             notifyError('Oops, não foi possível criar usuário')
-            console.error("Não foi possível criar usuário")
+            console.error("Não foi possível criar usuário", message)
         }
     })
 
@@ -53,6 +57,7 @@ export default function Cadastrar() {
         const { exists: userExists } = checkInCollection(users, 'email', email) // para teste e caso de estudo somente
         if (userExists) return notifyError("Usuário desse e-mail já existe", {
             icon: <User className="p-[1px]" />,
+            description: 'Deseja fazer login?',
             action:
                 <Button
                     type="button"

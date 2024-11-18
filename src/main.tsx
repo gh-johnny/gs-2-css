@@ -15,6 +15,7 @@ import './index.css'
 import Error from './routes/Error.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { Toaster } from './components/ui/sonner.tsx'
+import { UserProvider } from './contexts/user-context.tsx'
 
 const router = createBrowserRouter([
     {
@@ -65,8 +66,10 @@ const queryClient = new QueryClient()
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} future={{ v7_startTransition: true }} />
-            <Toaster />
+            <UserProvider>
+                <RouterProvider router={router} future={{ v7_startTransition: true }} />
+                <Toaster />
+            </UserProvider>
         </QueryClientProvider>
     </StrictMode>,
 )

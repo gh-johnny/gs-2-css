@@ -1,6 +1,7 @@
+import { TSessionStorageKeys } from "@/models/session-storage"
 import React from "react"
 
-const useSessionStorage = <T,>(key: string, initialValue: T) => {
+const useSessionStorage = <T,>(key: TSessionStorageKeys, initialValue: T) => {
 
     const [storedValue, setStoredValue] = React.useState<T>(() => {
         try {
