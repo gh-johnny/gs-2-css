@@ -1,5 +1,6 @@
 {
   "users": [
-    { "id": "1", "name": "guest", "email": "test@email.com", pass: "", salt: "" },
+    { "id": "1", "name": "guest", "email": "test@email.com", "pass": "", "salt": "" },
+    { "id": "2", "name": "uh", "email": "uh@email.com", "pass": "", "salt": "" }
   ]
 }

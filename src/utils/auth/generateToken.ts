@@ -16,7 +16,7 @@ const generateToken = (userId: string): string => {
     const encodedHeader = base64Encode(header)
     const encodedPayload = base64Encode(payload)
 
-    const signature = btoa(encodedHeader + "." + encodedPayload) // uso somente para teste e caso de estudo
+    const signature = btoa(encodedHeader + "." + encodedPayload) // uso para teste e caso de estudo somente
 
     return `${encodedHeader}.${encodedPayload}.${signature}`
 }

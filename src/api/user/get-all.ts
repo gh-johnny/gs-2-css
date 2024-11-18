@@ -6,7 +6,7 @@ export const getAllUsers = async () => { // para teste e caso de estudo somente
         const res = await api.get('/users')
         return res.data as TUser[]
     } catch (err) {
-        console.error('Could not fetch users')
+        console.error('Could not fetch all users')
         return undefined
     }
 }

@@ -5,18 +5,20 @@ import { InputError } from "@/components/ui/input-error"
 import { Label } from "@/components/ui/label"
 import { Show } from "@/components/utils/show"
 import { cadastroSchema, TCadastroSchema } from "@/schemas/cadastro-schema"
-import { toBoolean } from "@/utils/toBoolean"
+import { toBoolean } from "@/utils/data/toBoolean"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { createUser } from "@/api/user/create"
 import { TUser } from "@/models/user"
-import { generateSalt } from "@/utils/generateSalt"
-import { hashWithSalt } from "@/utils/hashWithSalt"
+import { generateSalt } from "@/utils/auth/generateSalt"
+import { hashWithSalt } from "@/utils/auth/hashWithSalt"
 import { getAllUsers } from "@/api/user/get-all"
-import { checkInCollection } from "@/utils/checkInCollection"
-import { toast } from "sonner"
+import { checkInCollection } from "@/utils/data/checkInCollection"
+import { notifyOk } from "@/utils/notify/notify-ok"
+import { notifyError } from "@/utils/notify/notify-error"
+import { notifyWarning } from "@/utils/notify/notify-warning"
 
 export default function Cadastrar() {
 
@@ -27,9 +29,15 @@ export default function Cadastrar() {
     const { mutateAsync: create } = useMutation({
         mutationFn: createUser,
         onSuccess: () => {
+            // set token in sessionStorage
+            // set user in userContext authContext userInfo whatever
+            // notify good
+            // clean / reset()
+            // redirect / navigate("/")
             console.log("yaaaay, logado")
         },
         onError: () => {
+            // notify bad
             console.error("Não foi possível criar usuário")
         }
     })
@@ -40,8 +48,10 @@ export default function Cadastrar() {
     })
 
     const onSubmit = async ({ name, email, password }: TCadastroSchema) => {
+        // notify bad
         if (!users) return console.error("Não foi possível verificar existência de usuário")
 
+        // notify bad
         const { exists: userExists } = checkInCollection(users, 'email', email) // para teste e caso de estudo somente
         if (userExists) return console.log("Usuário já existe")
 
@@ -142,8 +152,9 @@ export default function Cadastrar() {
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full rounded"
-                            onClick={() => { console.log({ errors }); 
-                                toast("uh")
+                            onClick={() => {
+                                console.log({ errors });
+                                notifyWarning("titulo", { description: "descrip" })
                             }}
                         >
                             Cadastrar
