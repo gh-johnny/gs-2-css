@@ -9,14 +9,50 @@ import { toBoolean } from "@/utils/toBoolean"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 
+import { useMutation, useQuery } from '@tanstack/react-query'
+import { createUser } from "@/api/user/create"
+import { TUser } from "@/models/user"
+import { generateSalt } from "@/utils/generateSalt"
+import { hashWithSalt } from "@/utils/hashWithSalt"
+import { getAllUsers } from "@/api/user/get-all"
+import { checkInCollection } from "@/utils/checkInCollection"
+
 export default function Cadastrar() {
 
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<TCadastroSchema>({
         resolver: zodResolver(cadastroSchema)
     })
 
-    const onSubmit = async (data: TCadastroSchema) => {
-        console.log(data)
+    const { mutateAsync: create } = useMutation({
+        mutationFn: createUser,
+        onSuccess: () => {
+            console.log("yaaaay, logado")
+        },
+        onError: () => {
+            console.error("Não foi possível criar usuário")
+        }
+    })
+
+    const { data: users } = useQuery<TUser[] | undefined>({ // para teste e caso de estudo somente
+        queryKey: ['fetch-users'],
+        queryFn: () => getAllUsers()
+    })
+
+    const onSubmit = async ({ name, email, password }: TCadastroSchema) => {
+        if (!users) return console.error("Não foi possível verificar existência de usuário")
+
+        const { exists: userExists } = checkInCollection(users, 'email', email) // para teste e caso de estudo somente
+        if (userExists) return console.log("Usuário já existe")
+
+        const currentSalt = await generateSalt()
+        const body: TUser = {
+            id: `${crypto.randomUUID().toString()}-${btoa(email)}`,
+            name,
+            email,
+            pass: await hashWithSalt(password, currentSalt),
+            salt: currentSalt,
+        }
+        await create(body)
     }
 
     const errorInputNameExists = toBoolean(errors && errors.name?.message)
@@ -46,6 +82,7 @@ export default function Cadastrar() {
                                 className="rounded"
                                 id="name"
                                 placeholder="John Doe"
+                                autoComplete="name"
                             />
                         </div>
                         <div className="space-y-2 relative">
@@ -62,6 +99,8 @@ export default function Cadastrar() {
                                 id="email"
                                 type="email"
                                 placeholder="meu@email.com"
+                                autoComplete="email"
+                                formNoValidate
                             />
                         </div>
                         <div className="space-y-2 relative">
@@ -77,6 +116,7 @@ export default function Cadastrar() {
                                 className="rounded"
                                 id="password"
                                 type="password"
+                                autoComplete="new-password"
                             />
                         </div>
                         <div className="space-y-2 relative">
@@ -92,6 +132,7 @@ export default function Cadastrar() {
                                 className="rounded"
                                 id="confirm-password"
                                 type="password"
+                                autoComplete="new-password"
                             />
                         </div>
                     </CardContent>
