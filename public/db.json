@@ -1,6 +1,11 @@
 {
   "users": [
-    { "id": "1", "name": "guest", "email": "test@email.com", "pass": "", "salt": "" },
-    { "id": "2", "name": "uh", "email": "uh@email.com", "pass": "", "salt": "" }
+    {
+      "id": "6aee14fa-20a1-4b37-ab0f-dd28360ab96f-dGVzdEBnbWFpbC5jb20=",
+      "name": "Test",
+      "email": "test@gmail.com",
+      "pass": "dd07ec380321be5d2032f6ec5a6fe2f404082e61c05f5a8d220f8d79dabf072d",
+      "salt": "295930f387ea42225c3179052b15dc2e1551a6f08968be8bd4decca132339635b6e3e869374734213997c23927ac5fb98ba9f6f1899f713cc0a643f31ac32"
+    }
   ]
 }

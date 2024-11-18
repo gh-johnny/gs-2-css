@@ -8,7 +8,7 @@ import { cadastroSchema, TCadastroSchema } from "@/schemas/cadastro-schema"
 import { toBoolean } from "@/utils/data/toBoolean"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
+import { User } from 'lucide-react'
 import { useMutation, useQuery } from '@tanstack/react-query'
 import { createUser } from "@/api/user/create"
 import { TUser } from "@/models/user"
@@ -16,11 +16,12 @@ import { generateSalt } from "@/utils/auth/generateSalt"
 import { hashWithSalt } from "@/utils/auth/hashWithSalt"
 import { getAllUsers } from "@/api/user/get-all"
 import { checkInCollection } from "@/utils/data/checkInCollection"
-import { notifyOk } from "@/utils/notify/notify-ok"
 import { notifyError } from "@/utils/notify/notify-error"
-import { notifyWarning } from "@/utils/notify/notify-warning"
+import { useNavigate } from "react-router-dom"
 
 export default function Cadastrar() {
+
+    const navigate = useNavigate()
 
     const { register, handleSubmit, formState: { isSubmitting, errors } } = useForm<TCadastroSchema>({
         resolver: zodResolver(cadastroSchema)
@@ -31,13 +32,12 @@ export default function Cadastrar() {
         onSuccess: () => {
             // set token in sessionStorage
             // set user in userContext authContext userInfo whatever
-            // notify good
             // clean / reset()
             // redirect / navigate("/")
             console.log("yaaaay, logado")
         },
         onError: () => {
-            // notify bad
+            notifyError('Oops, não foi possível criar usuário')
             console.error("Não foi possível criar usuário")
         }
     })
@@ -48,12 +48,20 @@ export default function Cadastrar() {
     })
 
     const onSubmit = async ({ name, email, password }: TCadastroSchema) => {
-        // notify bad
-        if (!users) return console.error("Não foi possível verificar existência de usuário")
+        if (!users) return notifyError("Não foi possível verificar existência de usuário")
 
-        // notify bad
         const { exists: userExists } = checkInCollection(users, 'email', email) // para teste e caso de estudo somente
-        if (userExists) return console.log("Usuário já existe")
+        if (userExists) return notifyError("Usuário desse e-mail já existe", {
+            icon: <User className="p-[1px]" />,
+            action:
+                <Button
+                    type="button"
+                    className="ml-auto rounded px-3 py-2"
+                    onClick={() => navigate("/login")}
+                >
+                    Login
+                </Button>
+        })
 
         const currentSalt = await generateSalt()
         const body: TUser = {
@@ -152,10 +160,6 @@ export default function Cadastrar() {
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full rounded"
-                            onClick={() => {
-                                console.log({ errors });
-                                notifyWarning("titulo", { description: "descrip" })
-                            }}
                         >
                             Cadastrar
                         </Button>
