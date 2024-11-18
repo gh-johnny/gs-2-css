@@ -14,6 +14,7 @@ import { ErrorBoundary } from 'react-error-boundary'
 import './index.css'
 import Error from './routes/Error.tsx'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Toaster } from './components/ui/sonner.tsx'
 
 const router = createBrowserRouter([
     {
@@ -65,6 +66,7 @@ createRoot(document.getElementById('root')!).render(
     <StrictMode>
         <QueryClientProvider client={queryClient}>
             <RouterProvider router={router} future={{ v7_startTransition: true }} />
+            <Toaster />
         </QueryClientProvider>
     </StrictMode>,
 )

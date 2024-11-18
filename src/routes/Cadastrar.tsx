@@ -16,6 +16,7 @@ import { generateSalt } from "@/utils/generateSalt"
 import { hashWithSalt } from "@/utils/hashWithSalt"
 import { getAllUsers } from "@/api/user/get-all"
 import { checkInCollection } from "@/utils/checkInCollection"
+import { toast } from "sonner"
 
 export default function Cadastrar() {
 
@@ -141,7 +142,9 @@ export default function Cadastrar() {
                             type="submit"
                             disabled={isSubmitting}
                             className="w-full rounded"
-                            onClick={() => console.log({ errors })}
+                            onClick={() => { console.log({ errors }); 
+                                toast("uh")
+                            }}
                         >
                             Cadastrar
                         </Button>
