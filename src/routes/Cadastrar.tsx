@@ -19,6 +19,9 @@ import { checkInCollection } from "@/utils/data/checkInCollection"
 import { notifyError } from "@/utils/notify/notify-error"
 import { useNavigate } from "react-router-dom"
 import { useUser } from "@/contexts/user-context"
+import { useSessionStorage } from "@/hooks/useSessionStorage"
+import axios from "axios"
+import Error from "./Error"
 
 export default function Cadastrar() {
 
@@ -26,7 +29,9 @@ export default function Cadastrar() {
 
     const { setUser: login } = useUser()
 
-    const { register, handleSubmit, formState: { isSubmitting, errors }, reset, getValues } = useForm<TCadastroSchema>({
+    const { storedValue: usersSessionStorage, setValue: setUsersSessionStorage } = useSessionStorage("EchoSphere@v1:users", null)
+
+    const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useForm<TCadastroSchema>({
         resolver: zodResolver(cadastroSchema)
     })
 
@@ -41,6 +46,18 @@ export default function Cadastrar() {
             navigate("/")
         },
         onError: ({ message }) => {
+            if (message == "Network Error") {
+                if (!usersSessionStorage) throw Error()
+                const currentUser = (usersSessionStorage! as TUser[]).pop()
+                if (!currentUser) throw Error()
+                login({
+                    email: currentUser.email,
+                    name: currentUser.name
+                })
+                reset()
+                navigate("/")
+                return
+            }
             notifyError('Oops, não foi possível criar usuário')
             console.error("Não foi possível criar usuário", message)
         }
@@ -52,9 +69,21 @@ export default function Cadastrar() {
     })
 
     const onSubmit = async ({ name, email, password }: TCadastroSchema) => {
-        if (!users) return notifyError("Não foi possível verificar existência de usuário")
+        let usersData = users
+        if (!usersData) console.error('Could not get all users from sessionStorage')
+        try {
+            if (!usersSessionStorage) {
+                const res = await axios.get('/db.json')
+                setUsersSessionStorage(res.data.users)
+                usersData = res.data.users
+            } else {
+                usersData = usersSessionStorage
+            }
+        } catch (errInner) {
+            notifyError("Não foi possível pegar informações de usuário existentes")
+        }
 
-        const { exists: userExists } = checkInCollection(users, 'email', email) // para teste e caso de estudo somente
+        const { exists: userExists } = checkInCollection(usersData || [], 'email', email) // para teste e caso de estudo somente
         if (userExists) return notifyError("Usuário desse e-mail já existe", {
             icon: <User className="p-[1px]" />,
             description: 'Deseja fazer login?',
@@ -76,6 +105,8 @@ export default function Cadastrar() {
             pass: await hashWithSalt(password, currentSalt),
             salt: currentSalt,
         }
+        const totalUsers = usersData ? [...usersData, body] : [body]
+        setUsersSessionStorage(totalUsers as any)
         await create(body)
     }
 

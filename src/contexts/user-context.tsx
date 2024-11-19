@@ -2,6 +2,8 @@ import React from "react"
 import { useSessionStorage } from "@/hooks/useSessionStorage"
 import { generateToken } from "@/utils/auth/generateToken"
 import { TUser } from "@/models/user"
+import { useMount } from "@/hooks/useMount"
+import axios from "axios"
 
 type TUserData = Omit<TUser, "id" | "pass" | "salt">
 
@@ -37,6 +39,14 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         null
     )
 
+    const {
+        storedValue: users,
+        setValue: setUsers,
+    } = useSessionStorage<string | null>(
+        "EchoSphere@v1:users",
+        null
+    )
+
     const login = (userData: TUserData | null) => {
         if (!userData) return setUser(userData)
         const token = generateToken(userData.email)
@@ -48,6 +58,15 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         removeUser()
         removeToken()
     }
+
+    useMount(() => {
+        const writePublickDataToSessionStorage = async () => {
+            if (users) return
+            const res = await axios.get('/db.json')
+            setUsers(res.data.users)
+        }
+        writePublickDataToSessionStorage()
+    })
 
     return (
         <UserContext.Provider value={{ user, setUser: login, logout, token }}>

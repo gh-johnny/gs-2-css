@@ -1,32 +1,11 @@
 {
   "users": [
     {
-      "id": "5ca0f8cb-8f48-4549-bb79-c1560b70f13c-ZmVAZW1haWwuY29t",
-      "name": "teste",
-      "email": "fe@email.com",
-      "pass": "5b363dc68d04d11e305ec101631bc357ee2c5540aa79162c538576584b6ecaf1",
-      "salt": "323bd9bc826818f428760da02f18bf328c3c354bfeec8c2cc80153b6280c02f204dceecf17e5ae1fc2f4818e574a8441f5d96eca8e1a74dbee425ecb3f1184"
-    },
-    {
       "id": "616ae5f4-5174-4f43-97de-8a41908ae42b-dGVzdEBnbWFpbC5jb20=",
       "name": "este",
       "email": "test@gmail.com",
       "pass": "4aaf2143f28bd5ca591722074f9bec4de3a486353ab731407c5af333208358e2",
       "salt": "36830d50d8bed62d8636ec4870225d906f16f5cb906caa01bf9dd9ac71264b7bc08e2b3791382e9260be1739e887c23b165894f1817f2c11e1a204f8ba5b4bc"
-    },
-    {
-      "id": "6d653824-b86c-4dcc-996f-a5168efa5772-b2lAZm1haWwuY29t",
-      "name": "oi",
-      "email": "oi@fmail.com",
-      "pass": "6764006f5d1e87675b0bebce794b3acba4d82175cd20117a07d1558e1dde6107",
-      "salt": "69880b82ca96fc57fc0d17f4a82fa58ddc0eaf9c339a107632e7f062281b61e8c2d82b1a7d872398f27b018800e5a2c2b11a5f5f6258414a6d39c8900eac88"
-    },
-    {
-      "id": "3f6c1d63-1f57-4f2e-bac7-dee805e44eff-bzFAZm1haWwuY29t",
-      "name": "oi",
-      "email": "o1@fmail.com",
-      "pass": "c443b1edc1d0f521ae939074ad2fa7244ce271e616fb68077b886136efef5417",
-      "salt": "6e112d659c2f8a71de3da982120c26aa67c3d41235c1596dd0f6b3a254d68af230bdd841e009d71e2f7baa063f3d8bd880e366b02002c63e0adaa27186dbf"
     }
   ]
 }
