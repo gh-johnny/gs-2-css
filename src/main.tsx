@@ -65,11 +65,13 @@ const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')!).render(
     <StrictMode>
-        <QueryClientProvider client={queryClient}>
-            <UserProvider>
-                <RouterProvider router={router} future={{ v7_startTransition: true }} />
-                <Toaster />
-            </UserProvider>
-        </QueryClientProvider>
+        <div className='min-w-[375px]'>
+            <QueryClientProvider client={queryClient}>
+                <UserProvider>
+                    <RouterProvider router={router} future={{ v7_startTransition: true }} />
+                    <Toaster />
+                </UserProvider>
+            </QueryClientProvider>
+        </div>
     </StrictMode>,
 )

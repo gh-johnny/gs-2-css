@@ -1,7 +1,5 @@
-import { useSessionStorage } from "@/hooks/useSessionStorage"
 import { api } from "@/lib/axios"
 import { TUser } from "@/models/user"
-import axios from "axios"
 
 export const getAllUsers = async () => { // para teste e caso de estudo somente
     try {
