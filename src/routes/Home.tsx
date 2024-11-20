@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
             </header>
 
-            <main className="container mx-auto px-4 py-8">
+            <main className="container mx-auto lg:px-4 py-8">
                 <section className="mb-12 relative border rounded overflow-hidden">
                     <div className="relative h-[400px] overflow-hidden rounded-lg">
                         {slides.map((slide, index) => (
