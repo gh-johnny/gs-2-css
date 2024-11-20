@@ -1,5 +1,5 @@
 import { FiFacebook as Facebook, FiLinkedin as Linkedin } from "react-icons/fi"
-import { FaInstagram as Instagram } from "react-icons/fa";
+import { FaInstagram as Instagram } from "react-icons/fa"
 import { GoMail as Mail } from "react-icons/go"
 import { Link } from "react-router-dom"
 
@@ -51,7 +51,6 @@ export default function Footer() {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </footer>
             <div className="mt-8 p-8 border-t text-center">

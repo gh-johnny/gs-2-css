@@ -1,4 +1,4 @@
-import { Home, Settings, User2, MessageCircleWarning, Lightbulb } from "lucide-react"
+import { Home, MessageCircleWarning, Lightbulb } from "lucide-react"
 
 export const NAVBAR = [
     {
