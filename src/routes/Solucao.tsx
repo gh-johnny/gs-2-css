@@ -63,10 +63,10 @@ function StarRating({ rating }: { rating: number }) {
 
 export default function Solucao() {
     return (
-        <div className="min-h-screen px-12">
-            <header className="text-white py-8">
-                <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Nossas Solução</h1>
+        <div className="min-h-screen">
+            <header className="py-8">
+                <div className="container h-auto mx-auto px-4">
+                    <h1 className="text-4xl font-bold mb-2">Nossas <span className="text-emerald-600">Soluções</span></h1>
                     <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
@@ -74,7 +74,7 @@ export default function Solucao() {
             <main className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
                     {solutions.map((solution) => (
-                        <Card key={solution.id} className="overflow-hidden rounded">
+                        <Card key={solution.id} className="overflow-hidden rounded bg-background text-primary">
                             <div className="md:flex">
                                 <div className="md:w-1/3">
                                     <img
@@ -85,12 +85,12 @@ export default function Solucao() {
                                 </div>
                                 <div className="md:w-2/3 p-6 flex flex-col">
                                     <CardHeader>
-                                        <CardTitle className="text-2xl mb-2">{solution.name}</CardTitle>
+                                        <CardTitle className="text-2xl mb-2 text-emerald-600">{solution.name}</CardTitle>
                                     </CardHeader>
                                     <CardContent className="flex-grow flex flex-col justify-between">
                                         <ul className="list-disc list-inside space-y-2 mb-4">
                                             {solution.features.map((feature, index) => (
-                                                <li key={index} className="text-muted-foreground">{feature}</li>
+                                                <li key={index} className="">{feature}</li>
                                             ))}
                                         </ul>
                                         <div className="flex-wrap flex justify-between gap-y-4 flex-row-reverse">

@@ -37,16 +37,16 @@ const teamMembers = [
 export default function Sobre() {
     return (
         <div className="min-h-screen px-12">
-            <header className="text-white py-8">
+            <header className="py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Sobre EchoSphere</h1>
+                    <h1 className="text-4xl font-bold mb-2">Sobre <span className="text-emerald-600">EchoSphere</span></h1>
                     <p className="text-xl">Pioneirando a Conscientização sobre Energia Verde por meio de IoT</p>
                 </div>
             </header>
 
             <main className="container mx-auto px-4 py-8">
                 <section className="mb-16">
-                    <Card className="overflow-hidden rounded">
+                    <Card className="overflow-hidden bg-background text-primary rounded">
                         <div className="md:flex">
                             <div className="md:w-1/2">
                                 <img
@@ -76,7 +76,7 @@ export default function Sobre() {
                     <h2 className="text-3xl font-bold mb-6 text-center">Nossa Missão</h2>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                         {missionPoints.map((point, index) => (
-                            <Card key={index} className="rounded text-center">
+                            <Card key={index} className="rounded text-center bg-background text-primary">
                                 <CardHeader>
                                     <CardTitle className="flex flex-col justify-center gap-4 items-center">
                                         <span className="text-3xl mr-2 mb-2">{point.icon}</span>
@@ -92,11 +92,11 @@ export default function Sobre() {
                 </section>
 
                 <section className="mb-16">
-                    <Card className="rounded">
+                    <Card className="rounded bg-background text-primary">
                         <div className="md:flex">
                             <div className="md:w-1/2 p-6">
                                 <CardHeader>
-                                    <CardTitle className="text-2xl mb-4">Nossa Abordagem</CardTitle>
+                                    <CardTitle className="text-2xl text-emerald-600 mb-4">Nossa Abordagem</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <ul className="list-disc list-inside space-y-2">
@@ -123,15 +123,15 @@ export default function Sobre() {
                     <h2 className="text-3xl font-bold mb-6 text-center">Nosso Time</h2>
                     <div className="flex justify-center flex-wrap gap-6">
                         {teamMembers.map((member, index) => (
-                            <Card key={index} className="rounded min-w-[470px] w-[470px] max-w-[470px]">
+                            <Card key={index} className="bg-background text-primary rounded min-w-[470px] w-[470px] max-w-[470px]">
                                 <CardHeader>
                                     <div className="flex flex-col items-center text-center">
                                         <Avatar className="w-24 h-24 mb-4">
                                             <AvatarImage src={member.image} alt={member.name} />
-                                            <AvatarFallback>{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                                            <AvatarFallback className="bg-background border">{member.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
                                         </Avatar>
                                         <CardTitle>{member.name}</CardTitle>
-                                        <p className="text-sm text-gray-500 mt-1">{member.role}</p>
+                                        <p className="text-sm text-emerald-600 mt-1">{member.role}</p>
                                     </div>
                                 </CardHeader>
                                 <CardContent>

@@ -51,9 +51,9 @@ export default function Home() {
 
     return (
         <div className="min-h-screen px-12">
-            <header className="text-white py-8">
+            <header className="py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Home</h1>
+                    <h1 className="text-4xl text-emerald-600 font-bold mb-2">EchoSphere</h1>
                     <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
@@ -68,7 +68,7 @@ export default function Home() {
                                     }`}
                             >
                                 <img src={slide.image} alt={slide.title} className="w-full h-full object-cover" />
-                                <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white p-4">
+                                <div className="absolute bottom-0 left-0 right-0 bg-primary text-white p-4">
                                     <h2 className="text-2xl font-bold mb-2">{slide.title}</h2>
                                     <p>{slide.description}</p>
                                 </div>
@@ -77,7 +77,7 @@ export default function Home() {
                     </div>
                     <Button
                         size="icon"
-                        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-muted-foreground rounded-full"
+                        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-foreground rounded-full"
                         onClick={() => setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length)}
                     >
                         <ChevronLeft className="text-white h-4 w-4" />
@@ -97,17 +97,17 @@ export default function Home() {
                     <h2 className="text-2xl font-bold mb-4">Nossas Soluções IoT</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {solutions.map((solution, index) => (
-                            <Card key={index} className='rounded'>
+                            <Card key={index} className='rounded bg-white bg-background text-foreground'>
                                 <CardHeader>
-                                    <CardTitle>{solution.title}</CardTitle>
+                                    <CardTitle className='text-emerald-600'>{solution.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
                                     <img
                                         src={solution.image}
                                         alt={solution.title}
-                                        className="w-full h-48 object-cover mb-4 rounded"
+                                        className="w-full h-48 object-cover mb-4 rounded border"
                                     />
-                                    <CardDescription>{solution.description}</CardDescription>
+                                    <CardDescription className='text-foreground'>{solution.description}</CardDescription>
                                 </CardContent>
                             </Card>
                         ))}

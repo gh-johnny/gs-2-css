@@ -1,7 +1,7 @@
 import { ElementType } from 'react'
 import { NAVBAR } from "@/constants/navbar"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import { Avatar } from "@/components/ui/avatar"
 import { List } from './utils/list'
 import { AvatarFallback } from '@radix-ui/react-avatar'
@@ -10,20 +10,24 @@ import { useUser } from '@/contexts/user-context'
 export default function NavBar() {
     const { user } = useUser()
 
-    const NavItem = ({ text, link, icon: Icon }: { text: string, link: string, icon: ElementType }) => (
-        <Tooltip>
-            <TooltipTrigger asChild>
-                <Link
-                    to={link}
-                    className="flex h-9 w-9 items-center justify-center rounded text-muted-foreground transition-colors hover:text-background hover:bg-foreground md:h-8 md:w-8"
-                >
-                    <Icon className="h-5 w-5" />
-                    <span className="sr-only">{text}</span>
-                </Link>
-            </TooltipTrigger>
-            <TooltipContent className='rounded hidden sm:block' side="right">{text}</TooltipContent>
-        </Tooltip>
-    );
+
+    const NavItem = ({ text, link, icon: Icon }: { text: string, link: string, icon: ElementType }) => {
+        const { pathname } = useLocation()
+        return (
+            <Tooltip>
+                <TooltipTrigger asChild>
+                    <Link
+                        to={link}
+                        className={`group flex h-9 w-9 items-center justify-center rounded transition-colors ${pathname === link ? 'bg-emerald-600 text-background' : ''} border border-transparent hover:border-emerald-600 md:h-8 md:w-8`}
+                    >
+                        <Icon className="h-5 w-5" />
+                        <span className="sr-only">{text}</span>
+                    </Link>
+                </TooltipTrigger>
+                <TooltipContent className={`border-emerald-600 ${pathname === link ? 'bg-emerald-600' : 'bg-background text-primary'} rounded hidden sm:block`} side="right">{text}</TooltipContent>
+            </Tooltip>
+        )
+    }
 
     const SideBarContent = () => (
         <>
@@ -37,10 +41,10 @@ export default function NavBar() {
                 <Tooltip>
                     <TooltipTrigger asChild>
                         <Avatar className='mx-auto border flex justify-center items-center'>
-                            <AvatarFallback className=''>{user ? user.name.at(0) : 'C'}</AvatarFallback>
+                            <AvatarFallback className='font-semibold text-primary'>{user ? user.name.at(0) : 'C'}</AvatarFallback>
                         </Avatar>
                     </TooltipTrigger>
-                    <TooltipContent className='rounded hidden sm:block' side="right">{user?.name}</TooltipContent>
+                    <TooltipContent className='border-emerald-600 bg-background text-primary rounded hidden sm:block' side="right">{user ? user?.name : 'Convidado'}</TooltipContent>
                 </Tooltip>
             </section>
         </>
