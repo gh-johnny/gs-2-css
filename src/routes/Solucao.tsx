@@ -3,42 +3,42 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 const solutions = [
     {
         id: 1,
-        name: "EnergyPulse",
+        name: "G.A.C.O",
         features: [
-            "Real-time energy consumption monitoring",
-            "Machine learning for usage pattern analysis",
-            "Intuitive mobile app and web interface",
-            "Predictive billing and anomaly detection",
-            "Smart home system integration"
+            "Monitoramento de ambiente em tempo real",
+            "Envio de dados para análise para plataforma gratuita",
+            "Interface intuitiva",
+            "Fácil de instalar",
+            "Integração com o sistema central C.A.S.A",
         ],
-        image: "/placeholder.svg?height=600&width=400",
-        price: 129.99
-    },
-    {
-        id: 2,
-        name: "GreenSwitch",
-        features: [
-            "IoT-enabled smart switch system",
-            "Automatic standby power reduction",
-            "Mesh network for whole-home management",
-            "HVAC and solar panel integration",
-            "Sleek, modern design"
-        ],
-        image: "/placeholder.svg?height=600&width=400",
+        image: "/img/gaco.jpeg",
         price: 49.99
     },
     {
-        id: 3,
-        name: "EcoTrack",
+        id: 2,
+        name: "C.A.S.A",
         features: [
-            "Portable, professional-grade energy analyzer",
-            "Spectral analysis for detailed energy insights",
-            "Early issue detection (power factor, harmonics)",
-            "Long-lasting battery for extended monitoring",
-            "Comprehensive reporting software"
+            "Sistema central inteligente automático para evitar desperdícios",
+            "Integração com dispositivos G.A.C.O para coleta de dados",
+            "Solução rápida de problemas",
+            "Monitoramento longo e extensivo",
+            "Relaxe enquanto C.A.S.A cuida do seu consumo de energia"
         ],
-        image: "/placeholder.svg?height=600&width=400",
-        price: 89.99
+        image: "/img/casa.jpeg",
+        price: 329.99
+    },
+    {
+        id: 3,
+        name: "T.E.C.O",
+        features: [
+            "Sistema fixo de coleta de dados em grande escala",
+            "Conexão direta com dispositivos G.A.C.O",
+            "Fácil monitoramento do consumo bairros, ruas etc.",
+            "Moderno e fácil de instalar",
+            "Recomendado para prefeituras ou donos de grandes condomínios ou prédios"
+        ],
+        image: "/img/teco.jpeg",
+        price: 119.99
     }
 ]
 
@@ -47,15 +47,15 @@ export default function Solucao() {
         <div className="min-h-screen">
             <header className="text-white py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Our Solutions</h1>
-                    <p className="text-xl">Advanced IoT Gadgets for Comprehensive Energy Management</p>
+                    <h1 className="text-4xl font-bold mb-2">Nossas Solução</h1>
+                    <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
 
             <main className="container mx-auto px-4 py-8">
                 <div className="space-y-8">
                     {solutions.map((solution) => (
-                        <Card key={solution.id} className="overflow-hidden">
+                        <Card key={solution.id} className="overflow-hidden rounded">
                             <div className="md:flex">
                                 <div className="md:w-1/3">
                                     <img
@@ -75,7 +75,7 @@ export default function Solucao() {
                                             ))}
                                         </ul>
                                         <p className="text-lg font-bold text-green-600">
-                                            Price: ${solution.price.toFixed(2)}
+                                            Preço: R${solution.price.toFixed(2).toString().replace(".", ",")}
                                         </p>
                                     </CardContent>
                                 </div>
