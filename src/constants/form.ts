@@ -18,7 +18,7 @@ export const FORM_ERROR_AT_LEAST_ONE_UPPER = 'Ao menos um caracter maiúsculo é
 
 export const FORM_ERROR_AT_LEAST_ONE_LOWER = 'Ao menos um caracter minúsculo é necessário (abc)'
 
-export const FORM_ERROR_AT_LEAST_ONE_NUMBER = 'Deve conter número (1)'
+export const FORM_ERROR_AT_LEAST_ONE_NUMBER = 'Deve conter número (123)'
 
 export const FORM_ERROR_AT_LEAST_ONE_SPECIAL_CHAR = 'Deve conter um caractere especial (!@#)'
 

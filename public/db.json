@@ -1,0 +1,11 @@
+{
+  "users": [
+    {
+      "id": "616ae5f4-5174-4f43-97de-8a41908ae42b-dGVzdEBnbWFpbC5jb20=",
+      "name": "Convidado",
+      "email": "convidado@gmail.com",
+      "pass": "4aaf2143f28bd5ca591722074f9bec4de3a486353ab731407c5af333208358e2",
+      "salt": "36830d50d8bed62d8636ec4870225d906f16f5cb906caa01bf9dd9ac71264b7bc08e2b3791382e9260be1739e887c23b165894f1817f2c11e1a204f8ba5b4bc"
+    }
+  ]
+}
