@@ -5,37 +5,37 @@ import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = [
     {
-        image: "/placeholder.svg?height=400&width=800",
-        title: "Empowering Green Energy",
-        description: "Innovative IoT solutions for a sustainable future"
+        image: "/img/girl-wild.jpg",
+        title: "Energia verde para todos",
+        description: "Soluções IoT inovadoras para um futuro melhor e mais barato"
     },
     {
-        image: "/placeholder.svg?height=400&width=800",
-        title: "Monitor Your Impact",
-        description: "Real-time energy consumption tracking at your fingertips"
+        image: "/img/plantbulb.jpg",
+        title: "Monitore seu impacto",
+        description: "Monitoramento em tempo real do consumo de energia na ponta dos dedos."
     },
     {
-        image: "/placeholder.svg?height=400&width=800",
-        title: "Reduce, Save, Thrive",
-        description: "Lower your carbon footprint and energy bills simultaneously"
+        image: "/img/planet-money.jpg",
+        title: "Gaste menos e viva mais",
+        description: "Reduza sua pegada de carbono e suas contas de energia simultaneamente."
     }
 ]
 
 const solutions = [
     {
-        title: "EnergyPulse",
-        description: "Smart meter that provides real-time energy consumption data",
-        image: "/placeholder.svg?height=200&width=300"
+        title: "G.A.C.O",
+        description: "Medidor inteligente que fornece dados de consumo de energia em tempo real",
+        image: "/img/gaco.jpeg"
     },
     {
-        title: "GreenSwitch",
-        description: "IoT-enabled smart switches to optimize energy usage",
-        image: "/placeholder.svg?height=200&width=300"
+        title: "C.A.S.A",
+        description: "Dispositivo inteligente habilitado para otimizar o uso de energia",
+        image: "/img/casa.jpeg"
     },
     {
-        title: "EcoTrack",
-        description: "Mobile app for monitoring and managing your energy consumption",
-        image: "/placeholder.svg?height=200&width=300"
+        title: "T.E.C.O",
+        description: "Dispositivo de monitoramento de consumo de energia em larga escala",
+        image: "/img/teco.jpeg"
     }
 ]
 
@@ -50,16 +50,16 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen px-12">
             <header className="text-white py-8">
                 <div className="container mx-auto px-4">
                     <h1 className="text-4xl font-bold mb-2">Home</h1>
-                    <p className="text-xl">Advanced IoT Gadgets for Comprehensive Energy Management</p>
+                    <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
 
             <main className="container mx-auto px-4 py-8">
-                <section className="mb-12 relative">
+                <section className="mb-12 relative border rounded overflow-hidden">
                     <div className="relative h-[400px] overflow-hidden rounded-lg">
                         {slides.map((slide, index) => (
                             <div
@@ -76,35 +76,37 @@ export default function Home() {
                         ))}
                     </div>
                     <Button
-                        variant="outline"
                         size="icon"
-                        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white"
+                        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-muted-foreground rounded-full"
                         onClick={() => setCurrentSlide((prevSlide) => (prevSlide - 1 + slides.length) % slides.length)}
                     >
-                        <ChevronLeft className="h-4 w-4" />
-                        <span className="sr-only">Previous slide</span>
+                        <ChevronLeft className="text-white h-4 w-4" />
+                        <span className="sr-only">Slide anterior</span>
                     </Button>
                     <Button
-                        variant="outline"
                         size="icon"
-                        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white"
+                        className="text-white absolute top-1/2 right-4 transform -translate-y-1/2 bg-muted-foreground rounded-full"
                         onClick={() => setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)}
                     >
                         <ChevronRight className="h-4 w-4" />
-                        <span className="sr-only">Next slide</span>
+                        <span className="sr-only">Próximo slide</span>
                     </Button>
                 </section>
 
                 <section className="mb-12">
-                    <h2 className="text-2xl font-bold mb-4">Our IoT Solutions</h2>
+                    <h2 className="text-2xl font-bold mb-4">Nossas Soluções IoT</h2>
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {solutions.map((solution, index) => (
-                            <Card key={index}>
+                            <Card key={index} className='rounded'>
                                 <CardHeader>
                                     <CardTitle>{solution.title}</CardTitle>
                                 </CardHeader>
                                 <CardContent>
-                                    <img src={solution.image} alt={solution.title} className="w-full h-48 object-cover mb-4 rounded-md" />
+                                    <img
+                                        src={solution.image}
+                                        alt={solution.title}
+                                        className="w-full h-48 object-cover mb-4 rounded"
+                                    />
                                     <CardDescription>{solution.description}</CardDescription>
                                 </CardContent>
                             </Card>
