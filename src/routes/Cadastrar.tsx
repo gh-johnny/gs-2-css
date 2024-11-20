@@ -17,7 +17,7 @@ import { hashWithSalt } from "@/utils/auth/hashWithSalt"
 import { getAllUsers } from "@/api/user/get-all"
 import { checkInCollection } from "@/utils/data/checkInCollection"
 import { notifyError } from "@/utils/notify/notify-error"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useUser } from "@/contexts/user-context"
 import { useSessionStorage } from "@/hooks/useSessionStorage"
 import axios from "axios"
@@ -117,11 +117,11 @@ export default function Cadastrar() {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
-            <Card className="w-full max-w-md rounded">
+            <Card className="bg-background text-primary w-full max-w-md rounded">
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <CardHeader className="space-y-1">
-                        <CardTitle className="text-2xl font-bold">Crie sua conta</CardTitle>
-                        <CardDescription>Digite suas informações para cadastro</CardDescription>
+                        <CardTitle className="text-2xl text-emerald-600 font-bold">Crie sua conta</CardTitle>
+                        <CardDescription className="text-primary">Digite suas informações para cadastro</CardDescription>
                     </CardHeader>
                     <CardContent className="space-y-4">
                         <div className="space-y-2 relative">
@@ -191,11 +191,17 @@ export default function Cadastrar() {
                             />
                         </div>
                     </CardContent>
-                    <CardFooter>
+                    <CardFooter className="flex flex-col gap-4">
+                        <div className="text-sm text-center text-gray-500">
+                            <span>Tem uma conta?</span>
+                            <Link className="text-primary hover:text-green-600 ml-1 underline" to="/cadastrar">
+                                Faça o Login aqui
+                            </Link>
+                        </div>
                         <Button
                             type="submit"
                             disabled={isSubmitting}
-                            className="w-full rounded"
+                            className="w-full rounded border border-emerald-600 bg-background hover:bg-emerald-600 hover:text-white"
                         >
                             Cadastrar
                         </Button>
