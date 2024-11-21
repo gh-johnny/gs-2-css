@@ -6,6 +6,7 @@ import { Avatar } from "@/components/ui/avatar"
 import { List } from './utils/list'
 import { AvatarFallback } from '@radix-ui/react-avatar'
 import { useUser } from '@/contexts/user-context'
+import { LogOut } from 'lucide-react'
 
 export default function NavBar() {
     const { user } = useUser()
@@ -29,26 +30,49 @@ export default function NavBar() {
         )
     }
 
-    const SideBarContent = () => (
-        <>
-            <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
-                <List
-                    items={NAVBAR}
-                    render={(item, i) => <NavItem key={i} {...item} />}
-                />
-            </nav>
-            <section className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
-                <Tooltip>
-                    <TooltipTrigger asChild>
-                        <Avatar className='mx-auto border flex justify-center items-center'>
-                            <AvatarFallback className='font-semibold text-primary'>{user ? user.name.at(0) : 'C'}</AvatarFallback>
-                        </Avatar>
-                    </TooltipTrigger>
-                    <TooltipContent className='border-emerald-600 bg-background text-primary rounded hidden sm:block' side="right">{user ? user?.name : 'Convidado'}</TooltipContent>
-                </Tooltip>
-            </section>
-        </>
-    );
+    const SideBarContent = () => {
+        const { logout } = useUser()
+        return (
+            <>
+                <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
+                    <List
+                        items={NAVBAR}
+                        render={(item, i) => <NavItem key={i} {...item} />}
+                    />
+                </nav>
+                <section className="mt-auto flex flex-col items-center gap-4 px-2 sm:py-5">
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Link
+                                to="/login"
+                                className={`group flex h-9 w-9 items-center justify-center rounded transition-colors border border-transparent hover:border-emerald-600 md:h-8 md:w-8`}
+                                onClick={() => logout()}
+                            >
+                                <LogOut className="h-5 w-5" />
+                                <span className="sr-only">Log out</span>
+                            </Link>
+                        </TooltipTrigger>
+                        <TooltipContent className='border-emerald-600 bg-background text-primary rounded hidden sm:block' side="right">
+                            Logout
+                        </TooltipContent>
+                    </Tooltip>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <Avatar className='group hover:bg-emerald-600 hover:border-emerald-600 mx-auto border flex justify-center items-center'>
+                                <AvatarFallback className='font-semibold group-hover:text-white text-primary'>
+                                    {user ? user.name.at(0) : 'C'}
+                                </AvatarFallback>
+                            </Avatar>
+                        </TooltipTrigger>
+                        <TooltipContent className='border-emerald-600 bg-background text-primary rounded hidden sm:block' side="right">
+                            <span>Usuário: {user ? user?.name : 'Convidado'}</span>
+                            <p>Deseja trocar de conta? Vá para o <Link to="/login" className='underline text-emerald-600'>Login</Link></p>
+                        </TooltipContent>
+                    </Tooltip>
+                </section>
+            </>
+        )
+    }
 
     return (
         <TooltipProvider>

@@ -53,7 +53,7 @@ export default function Home() {
         <div className="min-h-screen px-12">
             <header className="py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl text-emerald-600 font-bold mb-2">EchoSphere</h1>
+                    <h1 className="text-4xl text-emerald-600 font-bold mb-2">EcoLink</h1>
                     <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
@@ -85,10 +85,10 @@ export default function Home() {
                     </Button>
                     <Button
                         size="icon"
-                        className="text-white absolute top-1/2 right-4 transform -translate-y-1/2 bg-muted-foreground rounded-full"
+                        className="text-white absolute top-1/2 right-4 transform -translate-y-1/2 bg-foreground rounded-full"
                         onClick={() => setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)}
                     >
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="text-white h-4 w-4" />
                         <span className="sr-only">Próximo slide</span>
                     </Button>
                 </section>
