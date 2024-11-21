@@ -82,7 +82,7 @@ export default function NavBar() {
             </aside>
 
             {/* Mobile Bottom Navigation */}
-            <nav className="fixed bottom-0 left-0 right-0 z-10 flex justify-between border-t bg-background py-2 px-7 sm:hidden">
+            <nav className="fixed bottom-0 left-0 right-0 z-10 flex justify-between border-t bg-background py-3 px-7 sm:hidden">
                 <List
                     items={NAVBAR.slice(0, 1)}
                     render={(item, i) => <NavItem key={i} {...item} />}

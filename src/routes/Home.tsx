@@ -50,7 +50,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="min-h-screen px-12">
+        <div className="min-h-screen">
             <header className="py-8">
                 <div className="container mx-auto px-4">
                     <h1 className="text-4xl text-emerald-600 font-bold mb-2">EcoLink</h1>
@@ -58,7 +58,7 @@ export default function Home() {
                 </div>
             </header>
 
-            <main className="container mx-auto lg:px-4 py-8">
+            <main className="container mx-auto px-4 py-8">
                 <section className="mb-12 relative border rounded overflow-hidden">
                     <div className="relative h-[400px] overflow-hidden rounded-lg">
                         {slides.map((slide, index) => (

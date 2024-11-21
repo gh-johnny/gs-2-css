@@ -36,7 +36,7 @@ const teamMembers = [
 
 export default function Sobre() {
     return (
-        <div className="min-h-screen px-12">
+        <div className="min-h-screen">
             <header className="py-8">
                 <div className="container mx-auto px-4">
                     <h1 className="text-4xl font-bold mb-2">Sobre <span className="text-emerald-600">EcoLink</span></h1>
@@ -123,7 +123,7 @@ export default function Sobre() {
                     <h2 className="text-3xl font-bold mb-6 text-center">Nosso Time</h2>
                     <div className="flex justify-center flex-wrap gap-6">
                         {teamMembers.map((member, index) => (
-                            <Card key={index} className="bg-background text-primary rounded min-w-[470px] w-[470px] max-w-[470px]">
+                            <Card key={index} className="bg-background text-primary rounded max-w-[470px]">
                                 <CardHeader>
                                     <div className="flex flex-col items-center text-center">
                                         <Avatar className="w-24 h-24 mb-4">
