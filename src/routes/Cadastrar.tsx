@@ -29,7 +29,7 @@ export default function Cadastrar() {
 
     const { setUser: login } = useUser()
 
-    const { storedValue: usersSessionStorage, setValue: setUsersSessionStorage } = useSessionStorage("EchoSphere@v1:users", null)
+    const { storedValue: usersSessionStorage, setValue: setUsersSessionStorage } = useSessionStorage("EcoLink@v1:users", null)
 
     const { register, handleSubmit, formState: { isSubmitting, errors }, reset } = useForm<TCadastroSchema>({
         resolver: zodResolver(cadastroSchema)
@@ -194,8 +194,14 @@ export default function Cadastrar() {
                     <CardFooter className="flex flex-col gap-4">
                         <div className="text-sm text-center text-gray-500">
                             <span>Tem uma conta?</span>
-                            <Link className="text-primary hover:text-green-600 ml-1 underline" to="/cadastrar">
+                            <Link className="text-primary hover:text-green-600 ml-1 underline" to="/login">
                                 Faça o Login aqui
+                            </Link>
+                        </div>
+                        <div className="text-sm text-center text-gray-500">
+                            <span>Não quer uma conta?</span>
+                            <Link className="text-primary hover:text-green-600 ml-1 underline" to="/">
+                                Acesse como Convidado
                             </Link>
                         </div>
                         <Button

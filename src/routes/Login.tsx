@@ -22,7 +22,7 @@ export default function Component() {
 
     const navigate = useNavigate()
 
-    const { storedValue: users } = useSessionStorage("EchoSphere@v1:users", null)
+    const { storedValue: users } = useSessionStorage("EcoLink@v1:users", null)
     const { setUser: login } = useUser()
 
     const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<TLoginSchema>({

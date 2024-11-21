@@ -50,15 +50,15 @@ export default function Home() {
     }, [])
 
     return (
-        <div className="min-h-screen px-12">
+        <div className="min-h-screen">
             <header className="py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl text-emerald-600 font-bold mb-2">EchoSphere</h1>
+                    <h1 className="text-4xl text-emerald-600 font-bold mb-2">EcoLink</h1>
                     <p className="text-xl">Dispositivos IoT Avançados para uma Gestão Energética Inteligente</p>
                 </div>
             </header>
 
-            <main className="container mx-auto lg:px-4 py-8">
+            <main className="container mx-auto px-4 py-8">
                 <section className="mb-12 relative border rounded overflow-hidden">
                     <div className="relative h-[400px] overflow-hidden rounded-lg">
                         {slides.map((slide, index) => (
@@ -85,10 +85,10 @@ export default function Home() {
                     </Button>
                     <Button
                         size="icon"
-                        className="text-white absolute top-1/2 right-4 transform -translate-y-1/2 bg-muted-foreground rounded-full"
+                        className="text-white absolute top-1/2 right-4 transform -translate-y-1/2 bg-foreground rounded-full"
                         onClick={() => setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length)}
                     >
-                        <ChevronRight className="h-4 w-4" />
+                        <ChevronRight className="text-white h-4 w-4" />
                         <span className="sr-only">Próximo slide</span>
                     </Button>
                 </section>

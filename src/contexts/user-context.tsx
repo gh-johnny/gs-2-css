@@ -26,7 +26,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setValue: setUser,
         removeValue: removeUser
     } = useSessionStorage<TUserData | null>(
-        "EchoSphere@v1:user",
+        "EcoLink@v1:user",
         null
     )
 
@@ -35,7 +35,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         setValue: setToken,
         removeValue: removeToken
     } = useSessionStorage<string | null>(
-        "EchoSphere@v1:token",
+        "EcoLink@v1:token",
         null
     )
 
@@ -43,7 +43,7 @@ const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         storedValue: users,
         setValue: setUsers,
     } = useSessionStorage<string | null>(
-        "EchoSphere@v1:users",
+        "EcoLink@v1:users",
         null
     )
 

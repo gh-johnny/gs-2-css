@@ -1,4 +1,4 @@
-const appName = "EchoSphere@" as const
+const appName = "EcoLink@" as const
 
 const version = "v1:" as const
 

@@ -30,16 +30,16 @@ const teamMembers = [
         name: "João Marcelo",
         role: "Fundador & CTO",
         image: "/placeholder.svg?height=100&width=100",
-        bio: "Apaixonados por tecnologia sustentável e seu potencial para transformar o mundo."
+        bio: "Apaixonado por tecnologia sustentável e seu potencial para transformar o mundo."
     }
 ]
 
 export default function Sobre() {
     return (
-        <div className="min-h-screen px-12">
+        <div className="min-h-screen">
             <header className="py-8">
                 <div className="container mx-auto px-4">
-                    <h1 className="text-4xl font-bold mb-2">Sobre <span className="text-emerald-600">EchoSphere</span></h1>
+                    <h1 className="text-4xl font-bold mb-2">Sobre <span className="text-emerald-600">EcoLink</span></h1>
                     <p className="text-xl">Pioneirando a Conscientização sobre Energia Verde por meio de IoT</p>
                 </div>
             </header>
@@ -51,7 +51,7 @@ export default function Sobre() {
                             <div className="md:w-1/2">
                                 <img
                                     src="/img/company.jpeg"
-                                    alt="EchoSphere office"
+                                    alt="EcoLink office"
                                     className="w-full h-full lg:max-h-[30rem] object-cover"
                                 />
                             </div>
@@ -61,7 +61,7 @@ export default function Sobre() {
                                 </CardHeader>
                                 <CardContent>
                                     <p className="mb-4">
-                                        Fundada em 2020, a EchoSphere surgiu de uma ideia simples, mas poderosa: tornar o consumo de energia visível e compreensível para todos. Nossa equipe de especialistas dedicados combina tecnologia de ponta em IoT com uma paixão pela conservação ambiental.
+                                        Fundada em 2020, a EcoLink surgiu de uma ideia simples, mas poderosa: tornar o consumo de energia visível e compreensível para todos. Nossa equipe de especialistas dedicados combina tecnologia de ponta em IoT com uma paixão pela conservação ambiental.
                                     </p>
                                     <p>
                                         Hoje, estamos na vanguarda da revolução da energia verde, fornecendo dispositivos inteligentes e aplicativos intuitivos que empoderam indivíduos e empresas a assumirem o controle de seu consumo de energia e contribuírem para um mundo mais sustentável.
@@ -111,7 +111,7 @@ export default function Sobre() {
                             <div className="md:w-1/2">
                                 <img
                                     src="/img/device-black.jpeg"
-                                    alt="EchoSphere device illustration"
+                                    alt="EcoLink device illustration"
                                     className="w-full h-full lg:max-h-[25rem] object-cover"
                                 />
                             </div>
@@ -123,7 +123,7 @@ export default function Sobre() {
                     <h2 className="text-3xl font-bold mb-6 text-center">Nosso Time</h2>
                     <div className="flex justify-center flex-wrap gap-6">
                         {teamMembers.map((member, index) => (
-                            <Card key={index} className="bg-background text-primary rounded min-w-[470px] w-[470px] max-w-[470px]">
+                            <Card key={index} className="bg-background text-primary rounded max-w-[470px]">
                                 <CardHeader>
                                     <div className="flex flex-col items-center text-center">
                                         <Avatar className="w-24 h-24 mb-4">

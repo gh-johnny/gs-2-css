@@ -7,12 +7,12 @@ export default function Footer() {
     const currentYear = new Date().getFullYear()
 
     return (
-        <div>
-            <footer className="py-8 px-16 border-t">
+        <div className="mb-2 sm:mb-0">
+            <footer className=" py-8 px-16 border-t">
                 <div className="container mx-auto max-w-6xl">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div>
-                            <h2 className="text-lg text-emerald-600 font-semibold mb-4">EchoSphere</h2>
+                            <h2 className="text-lg text-emerald-600 font-semibold mb-4">EcoLink</h2>
                             <p className="text-sm">
                                 Inovando para um futuro verde e elétrico.
                             </p>
@@ -44,7 +44,7 @@ export default function Footer() {
                                         <Linkedin size={20} />
                                         <span className="sr-only">LinkedIn</span>
                                     </a>
-                                    <a href="mailto:info@echosphere.com" className="hover:text-green-600">
+                                    <a href="mailto:info@EcoLink.com" className="hover:text-green-600">
                                         <Mail size={20} />
                                         <span className="sr-only">Email</span>
                                     </a>
@@ -56,7 +56,7 @@ export default function Footer() {
             </footer>
             <div className="mt-8 p-8 border-t text-center">
                 <p className="text-sm">
-                    © {currentYear}{" "}<span className="text-emerald-600">EchoSphere.</span> All rights reserved.
+                    © {currentYear}{" "}<span className="text-emerald-600">EcoLink.</span> All rights reserved.
                 </p>
             </div>
         </div>
