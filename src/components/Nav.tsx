@@ -1,4 +1,4 @@
-import { ElementType } from 'react'
+import { ElementType, ReactNode, useState } from 'react'
 import { NAVBAR } from "@/constants/navbar"
 import { Tooltip, TooltipContent, TooltipTrigger, TooltipProvider } from "./ui/tooltip"
 import { Link, useLocation } from "react-router-dom"
@@ -6,11 +6,11 @@ import { Avatar } from "@/components/ui/avatar"
 import { List } from './utils/list'
 import { AvatarFallback } from '@radix-ui/react-avatar'
 import { useUser } from '@/contexts/user-context'
-import { LogOut } from 'lucide-react'
+import { LogOut, X } from 'lucide-react'
+import { Dialog, DialogClose, DialogContent, DialogPortal, DialogTitle, DialogTrigger } from './ui/dialog'
 
 export default function NavBar() {
     const { user } = useUser()
-
 
     const NavItem = ({ text, link, icon: Icon }: { text: string, link: string, icon: ElementType }) => {
         const { pathname } = useLocation()
@@ -32,6 +32,7 @@ export default function NavBar() {
 
     const SideBarContent = () => {
         const { logout } = useUser()
+
         return (
             <>
                 <nav className="flex flex-col items-center gap-4 px-2 sm:py-5">
@@ -74,6 +75,41 @@ export default function NavBar() {
         )
     }
 
+    const [open, setOpen] = useState(false)
+    const { logout } = useUser()
+
+    const UserModal = ({ children }: { children: ReactNode }) => (
+        <Dialog open={open} onOpenChange={setOpen}>
+            <DialogTrigger asChild>
+                {children}
+            </DialogTrigger>
+            <DialogPortal>
+                <DialogTitle className='sr-only'>Escolha entre fazer logout ou continuar página</DialogTitle>
+                <DialogContent
+                    data-state={open ? 'open' : 'closed'}
+                    className="bg-transparent border-none fixed bottom-16 right-[28px] sm:max-w-[425px]"
+                >
+                    <section className='rounded border relative flex items-center justify-center bg-background'>
+                        <DialogClose className='absolute top-3 right-3'>
+                            <X className='w-4 h-4' />
+                            <span className='sr-only'>Botão de fechar</span>
+                        </DialogClose>
+                        <div className='flex flex-col gap-4 justify-center items-center'>
+                            <span className='text-center mb-6'>Deseja sair ou trocar de conta?</span>
+                            <Link
+                                to="/login"
+                                onClick={() => logout()}
+                                className='border border-emerald-600 p-2 rounded'
+                            >
+                                <LogOut />
+                            </Link>
+                        </div>
+                    </section>
+                </DialogContent>
+            </DialogPortal>
+        </Dialog>
+    )
+
     return (
         <TooltipProvider>
             {/* Desktop Sidebar */}
@@ -91,6 +127,15 @@ export default function NavBar() {
                     items={NAVBAR.slice(1, 3).reverse()}
                     render={(item, i) => <NavItem key={i} {...item} />}
                 />
+                <UserModal>
+                    <Avatar>
+                        <Avatar className='w-9 h-9 mx-auto border flex justify-center items-center'>
+                            <AvatarFallback className='font-semibold text-primary'>
+                                {user ? user.name.at(0) : 'C'}
+                            </AvatarFallback>
+                        </Avatar>
+                    </Avatar>
+                </UserModal>
             </nav>
         </TooltipProvider>
     )

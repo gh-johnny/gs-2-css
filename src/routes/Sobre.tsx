@@ -30,7 +30,7 @@ const teamMembers = [
         name: "João Marcelo",
         role: "Fundador & CTO",
         image: "/placeholder.svg?height=100&width=100",
-        bio: "Apaixonados por tecnologia sustentável e seu potencial para transformar o mundo."
+        bio: "Apaixonado por tecnologia sustentável e seu potencial para transformar o mundo."
     }
 ]
 
