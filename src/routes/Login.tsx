@@ -5,7 +5,6 @@ import { InputError } from "@/components/ui/input-error"
 import { Label } from "@/components/ui/label"
 import { Show } from "@/components/utils/show"
 import { useUser } from "@/contexts/user-context"
-import { useMount } from "@/hooks/useMount"
 import { useSessionStorage } from "@/hooks/useSessionStorage"
 import { TUser } from "@/models/user"
 import { loginSchema, TLoginSchema } from "@/schemas/login-schema"
@@ -45,9 +44,6 @@ export default function Component() {
 
     const errorInputEmailExists = toBoolean(errors && errors.email?.message)
     const errorInputPasswordExists = toBoolean(errors && errors.password?.message)
-
-    useMount(() => {
-    })
 
     return (
         <div className="min-h-screen flex items-center justify-center p-4">
